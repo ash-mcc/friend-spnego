@@ -2,7 +2,7 @@
   (:require
     [clojure.tools.logging :refer (info)]
     [cemerick.friend :as friend]
-    [cemerick.friend.workflow :as friend-wf]
+    [cemerick.friend.workflows :as friend-wf]
     [sarnowski.kerberos :as kerberos]
     [sarnowski.kerberos.spnego :as spnego]))
 
