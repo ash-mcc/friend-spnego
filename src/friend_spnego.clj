@@ -29,9 +29,13 @@
                                        ::cemerick.friend/ensure-session true})))))
 
 (defn pre-authentication-credential-fn
-  "This credential checker simply checks for evidence of pre-authentication,
-   in the form of a suitable :remote-user value."
-  [get-roles-fn {:keys [remote-user]}]
-  (when-let [username (re-find #"[^@]+" (or remote-user ""))]
+  "This credential checker simply checks for evidence of pre-authentication: that a remote-user value exists.
+   The remote-user value is converted to the Friend :identity value using the map-remote-user-fn.
+   Its default definition is Clojure's identity function."
+  [get-roles-fn & opts]
+  (pre-authentication-credential-fn identity get-roles-fn & opts)
+  [map-remote-user-fn get-roles-fn {:keys [remote-user]}]
+  (when (some? remote-user)
     (info "Pre-authentication recognised for:" remote-user)
-    {:identity username :roles (get-roles-fn username)}))
+    (let [username (map-remote-user-fn remote-user)]
+      {:identity username :roles (get-roles-fn username)})))
