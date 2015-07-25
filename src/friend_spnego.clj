@@ -32,10 +32,10 @@
   "This credential checker simply checks for evidence of pre-authentication: that a remote-user value exists.
    The remote-user value is converted to the Friend :identity value using the map-remote-user-fn.
    Its default definition is Clojure's identity function."
-  [get-roles-fn & opts]
-  (pre-authentication-credential-fn identity get-roles-fn opts)
-  [map-remote-user-fn get-roles-fn {:keys [remote-user]}]
-  (when (some? remote-user)
-    (info "Pre-authentication recognised for:" remote-user)
-    (let [username (map-remote-user-fn remote-user)]
-      {:identity username :roles (get-roles-fn username)})))
+  ([get-roles-fn opts]
+    (pre-authentication-credential-fn identity get-roles-fn opts))
+  ([map-remote-user-fn get-roles-fn {:keys [remote-user]}]
+    (when (some? remote-user)
+      (info "Pre-authentication recognised for:" remote-user)
+      (let [username (map-remote-user-fn remote-user)]
+        {:identity username :roles (get-roles-fn username)}))))
