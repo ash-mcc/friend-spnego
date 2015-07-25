@@ -33,7 +33,7 @@
    The remote-user value is converted to the Friend :identity value using the map-remote-user-fn.
    Its default definition is Clojure's identity function."
   [get-roles-fn & opts]
-  (pre-authentication-credential-fn identity get-roles-fn & opts)
+  (pre-authentication-credential-fn identity get-roles-fn opts)
   [map-remote-user-fn get-roles-fn {:keys [remote-user]}]
   (when (some? remote-user)
     (info "Pre-authentication recognised for:" remote-user)
