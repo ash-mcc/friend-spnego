@@ -10,12 +10,12 @@
   "Wraps a SPNEGO inteceptor around the (Ring based web) app.
    jaas-config should contain JAAS login.conf information in the style of a map.
    If it's nil then the SPNEGO inteceptor isn't applied."
-  [app jaas-config]
+  [app jaas-config & opts]
   (if (some? jaas-config)
     (spnego/authenticate 
       app 
       (kerberos/create-service-subject (:principal jaas-config) (kerberos/create-config jaas-config))
-      :required? false)
+      opts)
     app))
 
 (defn pre-authentication
