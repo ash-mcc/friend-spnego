@@ -1,4 +1,4 @@
-(defproject ash-mcc/friend-spnego "0.1.6"
+(defproject ash-mcc/friend-spnego "0.1.7"
   :description "Helps Chas Emerick's Friend library to use the SPNEGO feature of Tobias Sarnowski's Kerberos library."
   :url "https://github.com/ash-mcc/friend-spnego"
   :author "Ashley McClenaghan"
