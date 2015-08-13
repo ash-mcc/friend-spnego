@@ -9,10 +9,11 @@
 (defn wrap-spnego
   "Wraps a SPNEGO inteceptor around the (Ring based web) app.
    jaas-config should contain JAAS login.conf information in the style of a map.
-   If it's nil then the SPNEGO inteceptor isn't applied."
+   If it's nil then the SPNEGO inteceptor isn't applied.
+   Optional named arguments (e.g. exempt?) for the SPNEGO inteceptor are passed through opts."
   [app jaas-config & opts]
   (if (some? jaas-config)
-    (spnego/authenticate 
+    (apply spnego/authenticate 
       app 
       (kerberos/create-service-subject (:principal jaas-config) (kerberos/create-config jaas-config))
       opts)

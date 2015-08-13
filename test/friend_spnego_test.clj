@@ -19,10 +19,11 @@
                      :keyTab "test/http.host1.keytab"
                      :principal "HTTP/host1.acme.org.uk@ACME"
                      :storeKey true
-                     :isInitiator false}]
+                     :isInitiator false}
+        exempt-fn (fn [request] (= "/favicon.ico" (:uri request)))]
     (wrap-spnego  
       (authenticate 
         (mk-app-to-be-secured) 
         auth-config)
       jaas-config
-      :require? false)))
+      :exempt? exempt-fn)))

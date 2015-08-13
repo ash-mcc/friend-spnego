@@ -8,6 +8,6 @@
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/tools.logging "0.3.1"]
                  [com.cemerick/friend "0.2.1"]
-                 [ash-mcc/sarnowski-kerberos "0.1.0"]]
+                 [ash-mcc/sarnowski-kerberos "0.3.0"]]
   :profiles {:dev {:dependencies [[ring/ring-core "1.3.2"]
                                   [ring/ring-jetty-adapter "1.3.2"]]}})
